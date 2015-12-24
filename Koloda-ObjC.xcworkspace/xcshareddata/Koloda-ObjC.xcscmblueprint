@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "C2428BCD1318629D287BDED7D3AB94439611CFC8",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "FCB93C9AECC56EE497CD5C77456A45A8E490A09C" : 0,
+    "C2428BCD1318629D287BDED7D3AB94439611CFC8" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "D7E38F3E-BB11-4B6B-9D90-57773052E78A",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "FCB93C9AECC56EE497CD5C77456A45A8E490A09C" : "",
+    "C2428BCD1318629D287BDED7D3AB94439611CFC8" : "Koloda-ObjC\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Koloda-ObjC",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Koloda-ObjC.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/akaking\/Koloda-ObjC.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C2428BCD1318629D287BDED7D3AB94439611CFC8"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/akaking\/3DES.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "FCB93C9AECC56EE497CD5C77456A45A8E490A09C"
+    }
+  ]
+}

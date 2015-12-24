@@ -52,5 +52,6 @@
 - (BOOL)swipeViewShouldMoveBackgroundCard:(SwipeView *)swipeView;
 - (BOOL)swipeViewShouldTransparentizeNextCard:(SwipeView *)swipeView;
 - (POPPropertyAnimation *)swipeViewBackgroundCardAnimation:(SwipeView *)swipeView;
+- (void)swipeView:(SwipeView *)swipeView cardSwipingPercent:(CGFloat)percent;
 
 @end

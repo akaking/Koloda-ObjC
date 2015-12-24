@@ -94,10 +94,7 @@ static CGFloat const kDefaultAlphaValueSemiTransparent            = 0.7;
 {
     [super layoutSubviews];
     if (!self.hasConfigured) {
-        if (self.visibleCardsViewArray.count == 0) {
-            [self reloadData];
-        }
-        else {
+        if (self.visibleCardsViewArray.count > 0) {
             [self setCardViewsFrame];
         }
         self.hasConfigured = YES;
@@ -113,7 +110,6 @@ static CGFloat const kDefaultAlphaValueSemiTransparent            = 0.7;
     }
     NSAssert(dataSource, @"DataSouce cant't be nil");
     _dataSource = dataSource;
-    [self setupDeck];
 }
 
 #pragma mark - Public
@@ -417,7 +413,7 @@ static CGFloat const kDefaultAlphaValueSemiTransparent            = 0.7;
         }
     }
     
-    if (self.visibleCardsViewArray.count > 1) {
+    if (self.visibleCardsViewArray.count > 0) {
         for (NSUInteger index = 0; index < self.visibleCardsViewArray.count; index++) {
             POPPropertyAnimation *frameAnimation = nil;
             DraggableCardView *currentCard = self.visibleCardsViewArray[index];
@@ -478,10 +474,15 @@ static CGFloat const kDefaultAlphaValueSemiTransparent            = 0.7;
 - (void)cardView:(DraggableCardView *)cardView draggedWithFinishPercent:(CGFloat)percent
 {
     self.isAnimating = YES;
+    
+    if ([self.delegate respondsToSelector:@selector(swipeView:cardSwipingPercent:)]) {
+        [self.delegate swipeView:self cardSwipingPercent:percent];
+    }
+    
     if ([self.delegate respondsToSelector:@selector(swipeViewShouldMoveBackgroundCard:)]) {
         BOOL shouldMove = [self.delegate swipeViewShouldMoveBackgroundCard:self];
         if (shouldMove) {
-            [self moveOtherCardsWithFinishPercent:percent];
+            [self moveOtherCardsWithFinishPercent:fabsf(percent)];
         }
     }
 }
@@ -489,6 +490,10 @@ static CGFloat const kDefaultAlphaValueSemiTransparent            = 0.7;
 - (void)cardView:(DraggableCardView *)cardView swippedInDirection:(SwipeDirection)direction
 {
     [self swipeToDirection:direction];
+    
+    if ([self.delegate respondsToSelector:@selector(swipeView:cardSwipingPercent:)]) {
+        [self.delegate swipeView:self cardSwipingPercent:0.0f];
+    }
 }
 
 - (void)cardViewReset:(DraggableCardView *)cardView
@@ -505,6 +510,10 @@ static CGFloat const kDefaultAlphaValueSemiTransparent            = 0.7;
         }];
     } else {
         self.isAnimating = NO;
+    }
+    
+    if ([self.delegate respondsToSelector:@selector(swipeView:cardSwipingPercent:)]) {
+        [self.delegate swipeView:self cardSwipingPercent:0.0f];
     }
 }
 

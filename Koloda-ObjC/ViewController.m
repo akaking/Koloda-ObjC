@@ -20,7 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.count = 5;
+    self.count = 10;
     self.swipeView.dataSource = self;
     self.swipeView.delegate = self;
 }
@@ -31,7 +31,7 @@
 
 
 - (IBAction)revertAction:(id)sender {
-    [self.swipeView revertAction];
+    [self.swipeView reloadData];
 }
 - (IBAction)likeAction:(id)sender {
     [self.swipeView swipeDirection:SwipeDirectionRight];
@@ -48,7 +48,7 @@
 - (UIView *)swipeView:(SwipeView *)swipeView
           cardAtIndex:(NSUInteger)index
 {
-    NSString *imageName = [NSString stringWithFormat:@"Card_like_%@",@(index + 1)];
+    NSString *imageName = [NSString stringWithFormat:@"Card_like_%@",@(index%6 + 1)];
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageName]];
     return imageView;
 }
@@ -62,15 +62,19 @@
 
 - (void)swipeView:(SwipeView *)swipeView didSwipeCardAtIndex:(NSUInteger)index inDirection:(SwipeDirection)direction
 {
-    if (index >= 3) {
-        self.count = 6;
-        [self.swipeView reloadData];
-    }
+//    if (index >= 3) {
+//        self.count = 6;
+//        [self.swipeView reloadData];
+//    }
 }
 
 - (void)swipeViewDidRunOutOfCards:(SwipeView *)swipeView
 {
-    [swipeView resetCurrentCardNumber];
+    // TO DO load data
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.count = 10;
+        [swipeView resetCurrentCardNumber];
+    });
 }
 
 - (void)swipeView:(SwipeView *)swipeView didSelectCardAtIndex:(NSUInteger)index
@@ -96,6 +100,11 @@
 - (POPPropertyAnimation *)swipeViewBackgroundCardAnimation:(SwipeView *)swipeView
 {
     return nil;
+}
+
+- (void)swipeView:(SwipeView *)swipeView cardSwipingPercent:(CGFloat)percent
+{
+    NSLog(@"dragged percent:%f", percent);
 }
 
 

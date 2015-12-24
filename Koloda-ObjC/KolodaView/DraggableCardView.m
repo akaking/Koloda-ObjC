@@ -240,7 +240,7 @@ static const CGFloat kCardResetAnimationDuration         = 0.2;
                                       self.originalLocation.y + self.yDistanceFromCenter);
             [self updateOverlayWithFinishPercent:self.xDistanceFromCenter / self.frame.size.width];
             if ([self.delegate respondsToSelector:@selector(cardView:draggedWithFinishPercent:)]) {
-                [self.delegate cardView:self draggedWithFinishPercent:MIN(fabs(self.xDistanceFromCenter * 100 / self.frame.size.width), 100)];
+                [self.delegate cardView:self draggedWithFinishPercent:MIN(self.xDistanceFromCenter * 100 / self.frame.size.width, 100)];
             }
         }
             break;
